@@ -10,6 +10,8 @@ import 'package:fashiontailor/InscriptionPage_1.dart';
 import 'package:fashiontailor/InscriptionPage_2.dart';
 import 'package:fashiontailor/ModelesHomme.dart';
 import 'package:fashiontailor/ModifierClient.dart';
+import 'package:fashiontailor/Parametres.dart';
+import 'package:fashiontailor/ProfilePage.dart';
 import 'package:fashiontailor/SousCategorie_Homme.dart';
 import 'package:flutter/material.dart';
 

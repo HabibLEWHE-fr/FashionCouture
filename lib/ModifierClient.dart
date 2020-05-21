@@ -9,26 +9,6 @@ class ModifierClient extends StatefulWidget {
   _ModifierClientState createState() => _ModifierClientState();
 }
 
-class Constants{
-  static const String MonCompte = 'Mon compte';
-  static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
-  static const String Quitter = 'Quitter';
-
-  static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
-  ];
-}
-
-
-void ChoiceAction(String choice){
-  //print ('Working');
-  if(choice == 'Mon compte'){
-    print('je veux manger');
-  }
-}
-
 class _ModifierClientState extends State<ModifierClient> {
 
   String _value = null ;

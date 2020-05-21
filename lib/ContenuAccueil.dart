@@ -1,8 +1,9 @@
-
+import 'package:fashiontailor/Parametres.dart';
 import 'package:fashiontailor/ProfilePage.dart';
 import 'package:fashiontailor/SousCategorie_Homme.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ContenuAccueil extends StatefulWidget {
   @override
@@ -10,14 +11,11 @@ class ContenuAccueil extends StatefulWidget {
 }
 
 class Constants{
-  static const String MonCompte = 'Mon compte';
   static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
   static const String Quitter = 'Quitter';
 
   static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
+    Parametres, Quitter
   ];
 }
 
@@ -32,6 +30,9 @@ class _ContenuAccueilState extends State<ContenuAccueil> {
      'assets/image2.jpg',
      'assets/image3.jpg',
      'assets/image4.jpg',
+     'assets/image5.jpg',
+     'assets/image6.jpg',
+     'assets/image7.jpg',
    ];
 
    void _previousImage(){
@@ -61,10 +62,10 @@ class _ContenuAccueilState extends State<ContenuAccueil> {
 
     void ChoiceAction(String choice){
       //print ('Working');
-      if(choice == 'Mon compte'){
+      if(choice == 'Paramètres'){
         Navigator.push(context, MaterialPageRoute(
             fullscreenDialog: true,
-            builder: (BuildContext context) => ProfileCouturier()
+            builder: (BuildContext context) => Parametres()
         )
         );
       }
@@ -82,7 +83,12 @@ class _ContenuAccueilState extends State<ContenuAccueil> {
 
     //Appbar
     final appbarCOntAcc = AppBar(
-      title: Text('Fashion Tailor'),
+      title: Text('E-Couture',
+        style: GoogleFonts.lato(
+          color: Colors.white,
+          fontWeight: FontWeight.bold
+        ),
+      ),
       actions: <Widget>[
         PopupMenuButton <String>(
           onSelected: ChoiceAction,
@@ -160,10 +166,20 @@ class _ContenuAccueilState extends State<ContenuAccueil> {
               );
             }),
           ),
-          SizedBox(height: 30.0,),
+          SizedBox(height: 15.0,),
+          Container(
+            //padding: EdgeInsets.only(left: 15.0),
+            //alignment: Alignment.topLeft,
+            child: Text('Catégories',
+                style: GoogleFonts.lobsterTwo(
+                  fontSize: 27.0,
+                  fontWeight: FontWeight.bold,
+                )
+            ),
+          ),
+          SizedBox(height: 10.0,),
           Container(  //Les gridTiles
-            //margin: EdgeInsets.only(top: 10.0),
-            height: MediaQuery.of(context).size.height-430,
+            height: MediaQuery.of(context).size.height-433,
             child: GridView.count(
               crossAxisCount: 2,
               padding: EdgeInsets.all(20.0),
@@ -241,16 +257,16 @@ class GridModel extends StatelessWidget {
               height: 30.0,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(7.0), bottomLeft: Radius.circular(7.0)),
-                  color: Colors.black.withOpacity(0.45)
+                  color: Colors.blueAccent.withOpacity(0.60)
               ),
               child:
               Text(name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 20.0,
-                    fontFamily: 'Roboto Medium',
-                    color: Colors.white
-                ),
+                style: GoogleFonts.sourceSerifPro(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold
+                )
               ),
             ),
           )

@@ -1,6 +1,9 @@
 import 'package:fashiontailor/InscriptionPage_1.dart';
+import 'package:fashiontailor/Parametres.dart';
+import 'package:fashiontailor/ProfilePage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class Connexion extends StatefulWidget {
@@ -17,20 +20,12 @@ class _ConnexionState extends State<Connexion> {
 
     //Appbar
     final appbar = AppBar(
-      title: Text('E-Couture'),
-      actions: <Widget>[
-        PopupMenuButton <String>(
-          onSelected: ChoiceAction,
-          itemBuilder: (BuildContext context){
-            return Constants.choices.map((String choices){
-              return PopupMenuItem<String>(
-                value: choices,
-                child: Text(choices),
-              );
-            }).toList();
-          },
-        )
-      ],
+      title: Text('E-Couture',
+        style: GoogleFonts.ubuntu(
+            fontWeight: FontWeight.w500,
+            fontSize: 25.0
+        ),
+      ),
     );
 
     //Fin Appbar
@@ -38,10 +33,10 @@ class _ConnexionState extends State<Connexion> {
     final text = Text(
       'CONNEXION',
       textAlign: TextAlign.center,
-      style: TextStyle(
+      style: GoogleFonts.lato(
         color: Colors.white,
         fontSize: 30,
-        fontFamily: 'Roboto Medium',
+        fontWeight: FontWeight.w500
       ),
     );
 
@@ -163,7 +158,7 @@ class _ConnexionState extends State<Connexion> {
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/image2.jpg'),
+                image: AssetImage('assets/image1.jpg'),
                 fit: BoxFit.cover,
               )
           ),
@@ -203,22 +198,3 @@ class _ConnexionState extends State<Connexion> {
   }
 }
 
-class Constants{
-  static const String MonCompte = 'Mon compte';
-  static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
-  static const String Quitter = 'Quitter';
-
-  static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
-  ];
-}
-
-
-void ChoiceAction(String choice){
-  //print ('Working');
-  if(choice == 'Mon compte'){
-    print('je veux manger');
-  }
-}

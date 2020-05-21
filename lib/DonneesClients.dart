@@ -24,22 +24,7 @@ class _DetailsClientsState extends State<DetailsClients> {
             ),
             onPressed: () => Navigator.of(context).pushNamed(ModifierClient.tagModifierClient),
         ),
-        IconButton(
-            icon: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-            onPressed: null
-        ),
       ],
-      leading:
-      IconButton(
-        icon: Icon(
-          Icons.close,
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
     );
 
     final table = Table(
@@ -398,59 +383,63 @@ class _DetailsClientsState extends State<DetailsClients> {
 
     return Scaffold(
       appBar: appbarDetailsClients,
-      body: Column(
+      body: ListView(
         children: <Widget>[
-          Row(
+          Column(
             children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/image3.jpg'),
+                        radius: 50.0,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20.0,),
+                  Container(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('LEWHE Habib',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w500),),
+                        SizedBox(height: 10.0,),
+                        Text('M, Noir',style: TextStyle(fontSize: 18.0),),
+                        SizedBox(height: 10.0,),
+                        Text('61951451',style: TextStyle(fontSize: 18.0),)
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10.0,),
               Container(
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/image3.jpg'),
-                    radius: 50.0,
+                alignment: Alignment.topLeft,
+                margin: EdgeInsets.only(left: 15.0),
+                child:
+                Text(
+                  'Mesures (cm)',
+                  style: TextStyle(
+                    color: Colors.lightBlue,
+                    fontFamily: 'Roboto Medium',
+                    fontSize: 15,
                   ),
                 ),
               ),
-              SizedBox(width: 20.0,),
-              Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text('LEWHE Habib',style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w500),),
-                    SizedBox(height: 10.0,),
-                    Text('M, Noir',style: TextStyle(fontSize: 18.0),),
-                    SizedBox(height: 10.0,),
-                    Text('61951451',style: TextStyle(fontSize: 18.0),)
-                  ],
+              Divider(color: Colors.lightBlue,height: 0.0,),
+              SizedBox(height: 30.0,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child:
+                Container(
+                  child: table,
                 ),
-              ),
+              )
             ],
           ),
-          SizedBox(height: 10.0,),
-          Container(
-            alignment: Alignment.topLeft,
-            margin: EdgeInsets.only(left: 15.0),
-            child:
-            Text(
-              'Mesures (cm)',
-              style: TextStyle(
-                color: Colors.lightBlue,
-                fontFamily: 'Roboto Medium',
-                fontSize: 15,
-              ),
-            ),
-          ),
-          Divider(color: Colors.lightBlue,height: 0.0,),
-          SizedBox(height: 30.0,),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.0),
-            child:
-            Container(
-              child: table,
-            ),
-          )
         ],
-      ),
+      )
     );
   }
 }

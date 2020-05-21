@@ -59,6 +59,14 @@ dependencies:
   carousel_slider: ^2.0.0
   local_google_fonts: ^1.0.8
   image_picker: ^0.6.5+3
+  built_value: ^7.1.0
+  built_collection: ^4.3.2
+  flutter_bloc: ^4.0.0
+  kiwi: ^0.2.0
+#  shared_preferences: ^0.5.7+2
+#  path_provider: ^1.6.8
+#  image_downloader: ^0.19.2
+#  google_maps_flutter: ^0.5.28
 
 dev_dependencies:
   flutter_test:

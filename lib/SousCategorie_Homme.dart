@@ -1,4 +1,5 @@
 import 'package:fashiontailor/ModelesHomme.dart';
+import 'package:fashiontailor/Parametres.dart';
 import 'package:flutter/material.dart';
 
 class SousCategorieHomme extends StatefulWidget {
@@ -57,6 +58,19 @@ class _SousCategorieHommeState extends State<SousCategorieHomme> {
   @override
   Widget build(BuildContext context) {
 
+    void ChoiceAction(String choice) {
+      if(choice == 'Paramètres'){
+        Navigator.push(context, MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (BuildContext context) => Parametres()
+        )
+        );
+      }
+      else if(choice == 'Quitter'){
+        Navigator.of(context).pop();
+      }
+    }
+
     //Appbar
     final appbar1 = AppBar(
       title: Text(widget.title),
@@ -75,7 +89,6 @@ class _SousCategorieHommeState extends State<SousCategorieHomme> {
       ],
     );
 
-    //FinAppbar
       if(widget.title == 'Homme'){
         modele = [
           DesignModel(nomModele: 'Tenues locales', imageModele: 'image1.jpg'),
@@ -128,18 +141,12 @@ class DesignModel{
 }
 
 
-class Constants{
-  static const String MonCompte = 'Mon compte';
+class Constants {
   static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
   static const String Quitter = 'Quitter';
 
-  static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
+  static const List<String> choices = <String>[
+    Parametres,
+    Quitter
   ];
-}
-
-void ChoiceAction(String choice){
-  print ('Working');
 }

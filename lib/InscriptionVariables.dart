@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 final bodyContainerDecorationImage = BoxDecoration(
     image: DecorationImage(
-      image: AssetImage('assets/image2.jpg'),
+      image: AssetImage('assets/image1.jpg'),
       fit: BoxFit.cover,
     ),
 );

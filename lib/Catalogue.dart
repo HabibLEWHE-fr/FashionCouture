@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:fashiontailor/Parametres.dart';
+import 'package:fashiontailor/ProfilePage.dart';
 import 'package:flutter/material.dart';
  import 'package:image_picker/image_picker.dart';
 
@@ -9,23 +11,12 @@ class Catalogue extends StatefulWidget {
 }
 
 class Constants{
-  static const String MonCompte = 'Mon compte';
   static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
   static const String Quitter = 'Quitter';
 
   static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
+    Parametres,Quitter
   ];
-}
-
-
-void ChoiceAction(String choice){
-  //print ('Working');
-  if(choice == 'Mon compte'){
-    print('je veux manger');
-  }
 }
 
 class _CatalogueState extends State<Catalogue> {
@@ -50,7 +41,7 @@ class _CatalogueState extends State<Catalogue> {
 
 
   Future<void> _showChoiceDialog(BuildContext context) async {
-    return await showDialog(context: context,builder: (BuildContext context){
+    return await showDialog(context: context,barrierDismissible: false ,builder: (BuildContext context){
       return AlertDialog(
         title: Text(
           'Ajouter un modèle',
@@ -110,6 +101,19 @@ class _CatalogueState extends State<Catalogue> {
 
   @override
   Widget build(BuildContext context) {
+
+    void ChoiceAction(String choice){
+      if(choice == 'Paramètres'){
+        Navigator.push(context, MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (BuildContext context) => Parametres()
+        )
+        );
+      }
+      else if(choice == 'Quitter'){
+        Navigator.of(context).pop();
+      }
+    }
 
     final appbarCatalogue = AppBar(
       title: Text('Catalogue'),

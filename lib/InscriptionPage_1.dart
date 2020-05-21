@@ -1,12 +1,15 @@
+import 'package:fashiontailor/AccueilPage.dart';
 import 'package:fashiontailor/InscriptionPage_2.dart';
 import 'package:fashiontailor/InscriptionVariables.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Inscription_1 extends StatefulWidget{
+class Inscription_1 extends StatefulWidget {
   //
-  Inscription_1():super();
+  Inscription_1() : super();
+
   //
   static String tag = 'inscription_1-page';
 
@@ -14,17 +17,19 @@ class Inscription_1 extends StatefulWidget{
   _Inscription_1State createState() => _Inscription_1State();
 }
 
-class _Inscription_1State extends State<Inscription_1>{
+class _Inscription_1State extends State<Inscription_1> {
   //
   final formkey = GlobalKey<FormState>();
 
   //
   int selectedRadio;
 
-  String _value = null ;
+  String _value = null;
+
   List<String> _values = List<String>();
 
-  String _value1 = null ;
+  String _value1 = null;
+
   List<String> _values1 = List<String>();
 
   @override
@@ -32,55 +37,47 @@ class _Inscription_1State extends State<Inscription_1>{
     super.initState();
     selectedRadio = 1;
     //
-    _values.addAll(["Homme","Femme","Mixte"]);
+    _values.addAll(["Homme", "Femme", "Mixte"]);
     _value = _values.elementAt(0);
 
-    _values1.addAll(["Styliste","Brodeur","Traditionnel"]);
+    _values1.addAll(["Styliste", "Brodeur", "Traditionnel"]);
     _value1 = _values1.elementAt(0);
   }
 
-  void _onChanged(String value){
+  void _onChanged(String value) {
     setState(() {
       _value = value;
     });
   }
-  void _onChanged1(String value){
+
+  void _onChanged1(String value) {
     setState(() {
       _value1 = value;
     });
   }
 
-  setSelectedRadio(int val){
+  setSelectedRadio(int val) {
     setState(() {
       selectedRadio = val;
     });
   }
 
-  void _submit(){
-    if(formkey.currentState.validate()){
-        Navigator.of(context).pushNamed(Inscription_2.tag);
+  void _submit() {
+    if (formkey.currentState.validate()) {
+      Navigator.of(context).pushNamed(Accueil.tag);
     }
   }
 
   @override
-  Widget build(BuildContext context){
-
+  Widget build(BuildContext context) {
     //Appar
     final appbar = AppBar(
-      title: Text('E-Couture'),
-      actions: <Widget>[
-        PopupMenuButton <String>(
-          onSelected: ChoiceAction,
-          itemBuilder: (BuildContext context){
-            return Constants.choices.map((String choices){
-              return PopupMenuItem<String>(
-                value: choices,
-                child: Text(choices),
-              );
-            }).toList();
-          },
-        )
-      ],
+      title: Text('E-Couture',
+        style: GoogleFonts.lato(
+            color: Colors.white,
+            fontWeight: FontWeight.bold
+        ),
+      ),
     );
 
     //fin Appbar
@@ -94,8 +91,7 @@ class _Inscription_1State extends State<Inscription_1>{
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
-                  fontFamily: 'Roboto Medium'
-              ),
+                  fontFamily: 'Roboto Medium'),
             ),
             Row(
               children: <Widget>[
@@ -103,7 +99,7 @@ class _Inscription_1State extends State<Inscription_1>{
                   value: 1,
                   groupValue: selectedRadio,
                   activeColor: Colors.white,
-                  onChanged: (val){
+                  onChanged: (val) {
                     //print('Client $val selected');
                     setSelectedRadio(val);
                   },
@@ -124,7 +120,7 @@ class _Inscription_1State extends State<Inscription_1>{
                   value: 2,
                   groupValue: selectedRadio,
                   activeColor: Colors.white,
-                  onChanged: (val){
+                  onChanged: (val) {
                     //print('Client $val selected');
                     setSelectedRadio(val);
                   },
@@ -146,82 +142,77 @@ class _Inscription_1State extends State<Inscription_1>{
 
     final typeCouturier = DropdownButton(
       value: _value,
-      items: _values.map((String value){
+      items: _values.map((String value) {
         return DropdownMenuItem(
           value: value,
           child: Row(
             children: <Widget>[
-              Text(value,
+              Text(
+                value,
               )
             ],
           ),
         );
       }).toList(),
-      onChanged: (String value){_onChanged(value);},
+      onChanged: (String value) {
+        _onChanged(value);
+      },
     );
 
     final specialiteCouturier = DropdownButton(
       value: _value1,
-      items: _values1.map((String value){
+      items: _values1.map((String value) {
         return DropdownMenuItem(
           value: value,
           child: Row(
-            children: <Widget>[
-              Text(value)
-            ],
+            children: <Widget>[Text(value)],
           ),
         );
       }).toList(),
-      onChanged: (String value){_onChanged1(value);},
+      onChanged: (String value) {
+        _onChanged1(value);
+      },
     );
 
     final nextButton = Container(
         width: 129.0,
         height: 35.0,
-        child:
-        RaisedButton(
-          onPressed: (){
+        child: RaisedButton(
+          onPressed: () {
             _submit();
           },
           color: Colors.indigoAccent,
           textColor: Colors.white,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0)
-          ),
-          child:
-          Text(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          child: Text(
             'Suivant',
             style: TextStyle(
               fontSize: 15.0,
               fontFamily: 'Roboto Medium',
             ),
           ),
-        )
-    );
+        ));
 
     return Scaffold(
-      resizeToAvoidBottomPadding: true,
-      appBar: appbar ,
-      body:
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: bodyContainerDecorationImage,
-        child:
-            Container(
+        resizeToAvoidBottomPadding: true,
+        appBar: appbar,
+        body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: bodyContainerDecorationImage,
+            child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
                 color: Color(0x0095FF).withOpacity(0.35),
               ),
-              child:
-              ListView(
+              child: ListView(
                 children: <Widget>[
                   Column(
                     children: <Widget>[
                       Container(
-                        child:
-                        Stack(
+                        child: Stack(
                           children: <Widget>[
                             Image(
                               image: AssetImage('assets/Rectangle 7.png'),
@@ -230,8 +221,7 @@ class _Inscription_1State extends State<Inscription_1>{
                             Positioned(
                               bottom: 25.0,
                               left: 25.0,
-                              child:
-                              Text(
+                              child: Text(
                                 'Inscription',
                                 style: TextStyle(
                                   fontSize: 25.0,
@@ -244,106 +234,86 @@ class _Inscription_1State extends State<Inscription_1>{
                         ),
                       ),
                       Container(
-                        child:
-                        Form(
-                          key: formkey,
-                            child:
-                            Padding(
-                              padding: EdgeInsets.only(left: 24.0,right: 24.0,top: 40.0),
-                              child:
-                              Column(
+                        child: Form(
+                            key: formkey,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 24.0, right: 24.0, top: 40.0),
+                              child: Column(
                                 children: <Widget>[
                                   lastNameInput,
-                                  SizedBox(height: 20.0,),
+                                  SizedBox(
+                                    height: 20.0,
+                                  ),
                                   firstNameInput,
-                                  SizedBox(height: 10.0,),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
                                   Row(
-                                    children: <Widget>[
-                                      gender
-                                    ],
+                                    children: <Widget>[gender],
                                   ),
                                   telephoneInput,
-                                  SizedBox(height: 30.0,),
+                                  SizedBox(
+                                    height: 30.0,
+                                  ),
                                   Row(
                                     children: <Widget>[
-                                      Text('Type de couturier(ère) :',
+                                      Text(
+                                        'Type de couturier(ère) :',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Roboto Medium',
-                                            fontSize: 18
-                                        ),
+                                            fontSize: 18),
                                       ),
-                                      SizedBox(width: 20.0,),
+                                      SizedBox(
+                                        width: 20.0,
+                                      ),
                                       Container(
                                         height: 25.0,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white
-                                        ),
-                                        child:
-                                        typeCouturier,
+                                        decoration:
+                                            BoxDecoration(color: Colors.white),
+                                        child: typeCouturier,
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 35.0,),
+                                  SizedBox(
+                                    height: 35.0,
+                                  ),
                                   Row(
                                     children: <Widget>[
-                                      Text('Votre Spécialité :',
+                                      Text(
+                                        'Votre Spécialité :',
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: 'Roboto Medium',
-                                            fontSize: 18
-                                        ),
+                                            fontSize: 18),
                                       ),
-                                      SizedBox(width: 20.0,),
+                                      SizedBox(
+                                        width: 20.0,
+                                      ),
                                       Container(
                                         height: 25.0,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white
-                                        ),
-                                        child:
-                                        specialiteCouturier,
+                                        decoration:
+                                            BoxDecoration(color: Colors.white),
+                                        child: specialiteCouturier,
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 70.0,),
+                                  SizedBox(
+                                    height: 70.0,
+                                  ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
-                                    children: <Widget>[
-                                      nextButton
-                                    ],
+                                    children: <Widget>[nextButton],
                                   )
                                 ],
                               ),
-                            )
-                        ),
+                            )),
                       )
                     ],
                   ),
                 ],
               ),
-            )
-      )
-    );
+            )));
   }
 }
-
-class Constants{
-  static const String MonCompte = 'Mon compte';
-  static const String Parametres = 'Paramètres';
-  static const String Partager = 'Partager';
-  static const String Apropos = 'A propos';
-  static const String Quitter = 'Quitter';
-
-  static const List<String> choices = <String> [
-    MonCompte,Parametres, Partager, Apropos, Quitter
-  ];
-}
-
-
-void ChoiceAction(String choice){
-  //print ('Working');
-  if(choice == 'Mon compte'){
-    print('je veux manger');
-  }
-}
-
